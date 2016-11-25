@@ -58,6 +58,7 @@ var WordPasterConfig = {
 	, "CrxPath"		        : "http://www.ncmem.com/download/WordPaster2/WordPaster.crx"
 	//Chrome 45
     , "NatHostName"         : "com.xproer.wordpaster"//
+    , "ExtensionID"         : "nmopflahkgegkgkfnhdjpflfjipkpjpk"
 	, "NatPath"		        : "http://www.ncmem.com/download/WordPaster2/WordPaster.nat.crx"
 	, "ExePath"		        : "http://www.ncmem.com/download/WordPaster2/WordPaster.exe"
 };
@@ -99,6 +100,7 @@ function WordPasterManager()
     this.ffPaster = null;
     this.ieParser = null;
     this.setuped = false;//控件是否安装
+    this.natInstalled = false;
     this.filesPanel = null;//jquery obj
     this.fileItem = null;//jquery obj
     this.line = null;//jquery obj
@@ -236,6 +238,11 @@ function WordPasterManager()
 	    }
 		, "Check": function ()
 		{
+		    var img = document.createElement('img');
+		    img.src = 'chrome-extension://' + _this.Config.ExtensionID + '/icon.jpg';
+		    img.onload = function () { _this.natInstalled = true; };
+		    img.onerror = function () { _this.setupTip(); };
+		    //chrome.management.get(_this.Config.ExtensionID, function (exInf) { _this.natInstall = true; });
 		    return true;
 		}
 	    , "CheckVer": function ()
@@ -381,6 +388,7 @@ function WordPasterManager()
 	        {
 	            _this.chrome45 = true;//
 	            _this.Browser = this.BrowserNat;
+	            _this.Browser.Check();
 	            this.WordParser = this.WordParserNat;
 	        }
 	    }
@@ -549,6 +557,7 @@ function WordPasterManager()
 	    }//chrome 45直接调用控件命令
 	    if (this.chrome45)
 	    {
+	        if (!this.natInstalled) { this.setupTip(); return;}
 	        _this.WordParser.Paste();
 	    }//非chrome 45则进行判断
 	    else
