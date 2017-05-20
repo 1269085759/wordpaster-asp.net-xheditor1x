@@ -10,6 +10,9 @@
     <link type="text/css" rel="Stylesheet" href="scp/scp.css" />
     <link type="text/css" rel="Stylesheet" href="WordPaster/js/skygqbox.css" />
     <script type="text/javascript" src="WordPaster/js/skygqbox.js" charset="utf-8"></script>
+    <script type="text/javascript" src="WordPaster/js/w.edge.js" charset="utf-8"></script>
+    <script type="text/javascript" src="WordPaster/js/w.app.js" charset="utf-8"></script>
+    <script type="text/javascript" src="WordPaster/js/w.file.js" charset="utf-8"></script>
 	<script type="text/javascript" src="WordPaster/js/WordPaster.js" charset="utf-8"></script>
     <script type="text/javascript" src="scp/scp.js" charset="utf-8"></script>
 	<style type="text/css">
@@ -37,7 +40,7 @@
 	<textarea id="txtContent" name="txtContent" rows="12" cols="80" style="width:560px;height:180px;">此示例演示与xhEditor编辑器整合的功能</textarea>
 	<script type="text/javascript" language="javascript">
 		var editor;
-		var pasterMgr = new PasterManager();
+		var pasterMgr = new WordPasterManager();
 		//pasterMgr.Config["PostUrl"] = "http://www.ncmem.com/products/upload.asp"
 		pasterMgr.Config["PostUrl"] = "http://localhost:56908/upload.aspx";
 		pasterMgr.Load(); //加载控件
